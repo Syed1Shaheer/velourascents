@@ -1,0 +1,222 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScentCarousel from '../components/ScentCarousel.astro';
+
+const womenImages = [
+  '/images/silk_petals_1.png',
+  '/images/silk_petals_2.png'
+];
+
+const menImages = [
+  '/images/imperial_1.png',
+  '/images/imperial_2.png'
+];
+---
+
+<Layout 
+  title="Shop Fragrances | Veloura Scents" 
+  description="Explore the flagship scent collection of Veloura Scents. Purchase Silk Petals for women or Imperial for men. Long-lasting luxury scents formulated for everyday elegance."
+>
+  <main style="padding-top: 120px;">
+    <!-- Shop Intro Section -->
+    <section class="section-spacing" style="padding-bottom: 2rem;">
+      <div class="container">
+        <div class="showcase-title-row gsap-reveal" style="margin-bottom: 2rem;">
+          <span class="showcase-tag">Olfactory Store</span>
+          <h1 class="hero-title" style="margin-bottom: 1.5rem;">Acquire Your Signature</h1>
+          <p class="text-lead" style="max-width: 600px;">
+            Select between our classic curated formulas. Delivered directly from our distribution centers in Karachi and Riyadh.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Grid Showcase -->
+    <section class="section-spacing" style="background-color: var(--bg-tertiary); padding-top: 4rem;">
+      <div class="container">
+        <div style="display: flex; flex-direction: column; gap: 8rem;">
+          <!-- Silk Petals -->
+          <div class="showcase-row scent-row-women">
+            <div class="showcase-visuals scent-visual-women gsap-image-reveal">
+              <ScentCarousel id="women" images={womenImages} altPrefix="Silk Petals" />
+            </div>
+
+            <div class="showcase-details gsap-reveal">
+              <span class="scent-badge">For Women</span>
+              <h2 class="scent-name" style="margin-bottom: 0.5rem;">Silk Petals</h2>
+              <p style="font-family: var(--font-sans); font-size: 1.25rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 1.5rem;" class="product-price-label" data-pk="PKR 3,500" data-sa="SAR 120">
+                PKR 3,500
+              </p>
+              <p class="scent-desc">
+                A soft floral fragrance with a smooth and refreshing scent profile. Perfect for women who prefer graceful, subtle, and elegant everyday fragrances that linger softly.
+              </p>
+              
+              <!-- Olfactory Map -->
+              <div class="notes-container">
+                <p class="notes-label">Olfactory Profile</p>
+                <div class="notes-grid">
+                  <div class="note-item">
+                    <span class="note-type">Top</span>
+                    <span class="note-value">Rose</span>
+                  </div>
+                  <div class="note-item">
+                    <span class="note-type">Heart</span>
+                    <span class="note-value">Lily of Valley</span>
+                  </div>
+                  <div class="note-item">
+                    <span class="note-type">Base</span>
+                    <span class="note-value">Soft Musk</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottle Specs -->
+              <div class="scent-specs">
+                <div class="spec-item">
+                  <span class="spec-name">Volume:</span>
+                  <span class="spec-val">50ML / 1.7 FL.OZ</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-name">Concentration:</span>
+                  <span class="spec-val">Eau de Parfum</span>
+                </div>
+              </div>
+
+              <div>
+                <button 
+                  class="btn btn-primary" 
+                  style="width: 100%; max-width: 320px;"
+                  onclick="window.addToCart('silk-petals', 'Silk Petals', 3500, 120, '/images/silk_petals_1.png')"
+                  aria-label="Add Silk Petals to Cart"
+                >
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imperial -->
+          <div class="showcase-row reversed scent-row-men">
+            <div class="showcase-visuals scent-visual-men gsap-image-reveal">
+              <ScentCarousel id="men" images={menImages} altPrefix="Imperial" />
+            </div>
+
+            <div class="showcase-details gsap-reveal">
+              <span class="scent-badge">For Men</span>
+              <h2 class="scent-name" style="margin-bottom: 0.5rem;">Imperial</h2>
+              <p style="font-family: var(--font-sans); font-size: 1.25rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 1.5rem;" class="product-price-label" data-pk="PKR 3,500" data-sa="SAR 120">
+                PKR 3,500
+              </p>
+              <p class="scent-desc">
+                A bold and long-lasting masculine fragrance featuring rich woody and fresh notes. Specifically designed for modern men who project confidence and elegance in every moment.
+              </p>
+              
+              <!-- Olfactory Map -->
+              <div class="notes-container">
+                <p class="notes-label">Olfactory Profile</p>
+                <div class="notes-grid">
+                  <div class="note-item">
+                    <span class="note-type">Top</span>
+                    <span class="note-value">Bergamot</span>
+                  </div>
+                  <div class="note-item">
+                    <span class="note-type">Heart</span>
+                    <span class="note-value">Cedarwood</span>
+                  </div>
+                  <div class="note-item">
+                    <span class="note-type">Base</span>
+                    <span class="note-value">Rich Amber</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottle Specs -->
+              <div class="scent-specs">
+                <div class="spec-item">
+                  <span class="spec-name">Volume:</span>
+                  <span class="spec-val">50ML / 1.7 FL.OZ</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-name">Concentration:</span>
+                  <span class="spec-val">Eau de Parfum</span>
+                </div>
+              </div>
+
+              <div>
+                <button 
+                  class="btn btn-primary" 
+                  style="width: 100%; max-width: 320px;"
+                  onclick="window.addToCart('imperial', 'Imperial', 3500, 120, '/images/imperial_1.png')"
+                  aria-label="Add Imperial to Cart"
+                >
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  // Sync page price labels with selected region
+  document.addEventListener('regionChanged', (e: any) => {
+    const region = e.detail.region as 'pk' | 'sa';
+    const labels = document.querySelectorAll('.product-price-label');
+    labels.forEach(label => {
+      const val = region === 'pk' ? label.getAttribute('data-pk') : label.getAttribute('data-sa');
+      if (val) label.textContent = val;
+    });
+  });
+
+  // Run animations
+  const runShopAnimations = () => {
+    // @ts-ignore
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    
+    // @ts-ignore
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Header reveal
+    // @ts-ignore
+    gsap.from('header', { y: -50, opacity: 0, duration: 0.8, ease: 'power3.out' });
+
+    // Shop title reveals
+    // @ts-ignore
+    gsap.from('.gsap-reveal', {
+      scrollTrigger: {
+        trigger: '.gsap-reveal',
+        start: 'top 90%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      y: 30,
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power3.out'
+    });
+
+    // Image reveal
+    // @ts-ignore
+    gsap.from('.gsap-image-reveal', {
+      scrollTrigger: {
+        trigger: '.gsap-image-reveal',
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      scale: 1.03,
+      duration: 1.2,
+      stagger: 0.1,
+      ease: 'power2.out'
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runShopAnimations);
+  } else {
+    runShopAnimations();
+  }
+</script>

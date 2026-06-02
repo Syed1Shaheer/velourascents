@@ -1,0 +1,386 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScentCarousel from '../components/ScentCarousel.astro';
+
+// Scent Carousel Images
+const womenImages = [
+  '/images/silk_petals_1.png',
+  '/images/silk_petals_2.png'
+];
+
+const menImages = [
+  '/images/imperial_1.png',
+  '/images/imperial_2.png'
+];
+---
+
+<Layout 
+  title="Veloura Scents | Affordable Luxury Fragrances" 
+  description="Veloura Scents offers high-quality, long-lasting luxury-inspired perfumes at budget-friendly prices. Discover our signature scents: Silk Petals for women and Imperial for men. Delivering in Karachi & Saudi Arabia."
+>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="hero-tag">Premium Fragrance House</span>
+          <h1 class="hero-title" id="main-heading">
+            <span class="word-reveal">Your</span> 
+            <span class="word-reveal" style="color: var(--accent-gold);">Signature.</span><br />
+            <span class="word-reveal">Our</span> 
+            <span class="word-reveal">Craft.</span>
+          </h1>
+          <p class="hero-desc text-lead">
+            Veloura Scents delivers luxury-inspired, long-lasting fragrances engineered for sophisticated individuals. Made affordable, crafted with passion.
+          </p>
+          
+          <!-- Localized Availability Notice -->
+          <div id="local-hub-notice" style="margin-bottom: 2.5rem; min-height: 48px; border-left: 2px solid var(--accent-gold); padding-left: 1rem;">
+            <p id="local-notice-text" style="font-size: 0.875rem; font-weight: 500; color: var(--text-primary);">
+              ⚡ Same-day dispatch in Karachi. Free shipping on orders over PKR 3,000.
+            </p>
+          </div>
+
+          <div class="hero-actions">
+            <a href="/shop" class="btn btn-primary" aria-label="Shop our collection">Shop Collection</a>
+            <a href="/about" class="btn btn-secondary" aria-label="Learn about our story">Our Story</a>
+          </div>
+        </div>
+
+        <div class="hero-gallery" style="display: flex; align-items: center; justify-content: center;">
+          <div class="hero-img-container" style="position: relative; width: 100%; height: 90%; border-radius: 4px; overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);">
+            <img 
+              src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&q=80&w=800" 
+              alt="Premium abstract glass refraction on textured background representing luxury craft" 
+              width="450" 
+              height="550"
+              style="object-fit: cover; width: 100%; height: 100%; opacity: 1; transform: none;"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scent Showcase (Product Catalog Preview) -->
+    <section class="section-spacing" id="collection" style="background-color: var(--bg-tertiary);">
+      <div class="container">
+        <div class="showcase-title-row gsap-reveal">
+          <span class="showcase-tag">The Signature Duet</span>
+          <h2>Flagship Scent Collection</h2>
+          <p class="text-lead" style="max-width: 600px;">
+            Two meticulously balanced formulations representing the peak of olfactory refinement. Designed for lasting presence.
+          </p>
+        </div>
+
+        <!-- Row 1: Silk Petals (Women) -->
+        <div class="showcase-row scent-row-women">
+          <div class="showcase-visuals scent-visual-women gsap-image-reveal">
+            <!-- Accessible carousel component -->
+            <ScentCarousel id="women" images={womenImages} altPrefix="Silk Petals" />
+          </div>
+
+          <div class="showcase-details gsap-reveal">
+            <span class="scent-badge">For Women</span>
+            <h3 class="scent-name">Silk Petals</h3>
+            <p class="scent-desc">
+              A soft floral fragrance with a smooth and refreshing scent profile. Crafted precisely for individuals who appreciate graceful, elegant everyday scents that linger softly.
+            </p>
+            
+            <!-- Olfactory Map -->
+            <div class="notes-container">
+              <p class="notes-label">Olfactory Profile</p>
+              <div class="notes-grid">
+                <div class="note-item">
+                  <span class="note-type">Top</span>
+                  <span class="note-value">Rose</span>
+                </div>
+                <div class="note-item">
+                  <span class="note-type">Heart</span>
+                  <span class="note-value">Lily of Valley</span>
+                </div>
+                <div class="note-item">
+                  <span class="note-type">Base</span>
+                  <span class="note-value">Soft Musk</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottle Specs -->
+            <div class="scent-specs">
+              <div class="spec-item">
+                <span class="spec-name">Volume:</span>
+                <span class="spec-val">50ML / 1.7 FL.OZ</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-name">Concentration:</span>
+                <span class="spec-val">Eau de Parfum</span>
+              </div>
+            </div>
+
+            <div>
+              <button 
+                class="btn btn-primary" 
+                onclick="window.addToCart('silk-petals', 'Silk Petals', 3500, 120, '/images/silk_petals_1.png')"
+                aria-label="Add Silk Petals to Cart"
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Imperial (Men) -->
+        <div class="showcase-row reversed scent-row-men">
+          <div class="showcase-visuals scent-visual-men gsap-image-reveal">
+            <!-- Accessible carousel component -->
+            <ScentCarousel id="men" images={menImages} altPrefix="Imperial" />
+          </div>
+
+          <div class="showcase-details gsap-reveal">
+            <span class="scent-badge">For Men</span>
+            <h3 class="scent-name">Imperial</h3>
+            <p class="scent-desc">
+              A bold and long-lasting masculine fragrance featuring rich woody and fresh notes. Specifically designed for modern men who project confidence and elegance in every moment.
+            </p>
+            
+            <!-- Olfactory Map -->
+            <div class="notes-container">
+              <p class="notes-label">Olfactory Profile</p>
+              <div class="notes-grid">
+                <div class="note-item">
+                  <span class="note-type">Top</span>
+                  <span class="note-value">Bergamot</span>
+                </div>
+                <div class="note-item">
+                  <span class="note-type">Heart</span>
+                  <span class="note-value">Cedarwood</span>
+                </div>
+                <div class="note-item">
+                  <span class="note-type">Base</span>
+                  <span class="note-value">Rich Amber</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottle Specs -->
+            <div class="scent-specs">
+              <div class="spec-item">
+                <span class="spec-name">Volume:</span>
+                <span class="spec-val">50ML / 1.7 FL.OZ</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-name">Concentration:</span>
+                <span class="spec-val">Eau de Parfum</span>
+              </div>
+            </div>
+
+            <div>
+              <button 
+                class="btn btn-primary" 
+                onclick="window.addToCart('imperial', 'Imperial', 3500, 120, '/images/imperial_1.png')"
+                aria-label="Add Imperial to Cart"
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="section-spacing story-section" id="story">
+      <div class="container story-grid">
+        <div class="story-content gsap-reveal">
+          <span class="story-subtitle">The Founders' Vision</span>
+          <h2 class="story-title">Democratizing Premium Fragrance</h2>
+          <div class="story-desc-block">
+            <p class="story-desc-lead">
+              Veloura Scents was founded by three university students with a singular, clear vision: to design a trusted fragrance brand known for affordable luxury and long-lasting perfumes.
+            </p>
+            <p>
+              Frustrated by the extreme price markups in the fragrance industry, Sarah, Neeha, and Shaheer set out to engineer high-end scents without the luxury price tag.
+            </p>
+            <p>
+              Every bottle is designed with raw passion, absolute confidence, and timeless sophistication in mind. By sourcing premium essential oils and opting for minimalist, high-quality packaging, we deliver the exact olfactory performance of high-end brands at a budget-friendly price.
+            </p>
+          </div>
+
+          <div class="story-founders">
+            <p class="founders-label">Founders & Perfumers</p>
+            <p class="founders-list">Sarah, Neeha <span>&</span> Shaheer</p>
+          </div>
+        </div>
+
+        <div class="story-image-wrap gsap-reveal">
+          <!-- Fixed story image representing artisanal formulation -->
+          <img 
+            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800" 
+            alt="Artisanal perfume formulation table with wood notes and ingredients" 
+            loading="lazy" 
+            width="600" 
+            height="750" 
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand Pillars Section (Mission & Vision) -->
+    <section class="section-spacing" id="pillars" style="background-color: var(--bg-primary);">
+      <div class="container">
+        <div class="showcase-title-row gsap-reveal" style="margin-bottom: 5rem;">
+          <span class="showcase-tag">What Drives Us</span>
+          <h2>Our Core Foundation</h2>
+          <p class="text-lead" style="max-width: 600px;">
+            The principles that guide our development, sourcing, and customer commitment.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          <!-- Card 1 (Larger): Mission -->
+          <div class="pillar-card gsap-reveal">
+            <div class="pillar-card-content">
+              <span class="pillar-tag">The Mission</span>
+              <h3 class="pillar-title">Affordable Luxury</h3>
+              <p class="pillar-desc">
+                Veloura Scents is committed to providing high-quality, luxury-inspired fragrances at affordable prices while ensuring customer satisfaction through quality products, attractive packaging, and a strong brand presence.
+              </p>
+            </div>
+            <div style="font-family: var(--font-sans); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--accent-gold);">
+              No Compromises &rarr;
+            </div>
+          </div>
+
+          <!-- Card 2 (Smaller): Vision -->
+          <div class="pillar-card gsap-reveal">
+            <div class="pillar-card-content">
+              <span class="pillar-tag">The Vision</span>
+              <h3 class="pillar-title">Long-lasting Trust</h3>
+              <p class="pillar-desc">
+                To become a trusted fragrance brand known for affordable luxury and long-lasting perfumes.
+              </p>
+            </div>
+            <div style="font-family: var(--font-sans); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--accent-gold);">
+              Global Standard &rarr;
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<!-- Client Side Dynamic Interactions -->
+<script>
+  // Dynamic notice text depending on region
+  const shippingInfo = {
+    pk: '⚡ Same-day dispatch in Karachi. Free shipping on orders over PKR 3,000.',
+    sa: '🇸🇦 Express courier shipping across KSA (Riyadh, Jeddah, Dammam) in 3-5 days.'
+  };
+
+  document.addEventListener('regionChanged', (e: any) => {
+    const region = e.detail.region as 'pk' | 'sa';
+    const hubNoticeText = document.getElementById('local-notice-text');
+    if (hubNoticeText) {
+      hubNoticeText.textContent = shippingInfo[region];
+    }
+  });
+
+  // GSAP Animations Execution
+  const runAnimations = () => {
+    // @ts-ignore
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      return;
+    }
+
+    // Register ScrollTrigger
+    // @ts-ignore
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Timeline for Initial Page Load Animations
+    // @ts-ignore
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.2 } });
+    
+    tl.from('header', { y: -50, opacity: 0, duration: 0.8 })
+      .from('.hero-tag', { opacity: 0, y: 15, duration: 0.6 }, '-=0.4')
+      .to('.word-reveal', { opacity: 1, y: 0, duration: 1.0, stagger: 0.15 }, '-=0.4')
+      .from('.hero-desc', { opacity: 0, y: 20, duration: 0.8 }, '-=0.8')
+      .from('#local-hub-notice', { opacity: 0, x: -20, duration: 0.8 }, '-=0.8')
+      .from('.hero-actions', { opacity: 0, y: 20, duration: 0.8 }, '-=0.8')
+      .from('.hero-gallery img', { opacity: 0, scale: 1.05, duration: 1.4 }, '-=1.0');
+
+    // Scroll-Triggered Reveals for Sections
+    const reveals = document.querySelectorAll('.gsap-reveal');
+    reveals.forEach(element => {
+      // @ts-ignore
+      gsap.from(element, {
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        ease: 'power3.out'
+      });
+    });
+
+    // Image Scale Reveals on Scroll
+    const imgReveals = document.querySelectorAll('.gsap-image-reveal');
+    imgReveals.forEach(element => {
+      // @ts-ignore
+      gsap.from(element, {
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        scale: 1.05,
+        duration: 1.5,
+        ease: 'power2.out'
+      });
+    });
+
+    // Parallax scroll triggers for product images
+    // @ts-ignore
+    gsap.from('.scent-visual-women img', {
+      scrollTrigger: {
+        trigger: '.scent-row-women',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        scrub: 1.2
+      },
+      y: 30,
+      ease: 'none'
+    });
+
+    // @ts-ignore
+    gsap.from('.scent-visual-men img', {
+      scrollTrigger: {
+        trigger: '.scent-row-men',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        scrub: 1.2
+      },
+      y: 30,
+      ease: 'none'
+    });
+  };
+
+  // Run animations when ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runAnimations);
+  } else {
+    runAnimations();
+  }
+</script>
+
+<style>
+  .word-reveal {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+  }
+</style>

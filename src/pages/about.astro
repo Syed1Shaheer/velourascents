@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Our Story | Veloura Scents" 
+  description="Learn about the origins of Veloura Scents, founded by three university students—Sarah, Neeha, and Shaheer—to bring high-quality, long-lasting luxury fragrances to everyone at an affordable price."
+>
+  <main style="padding-top: 120px;">
+    <!-- Editorial Intro -->
+    <section class="section-spacing" style="padding-bottom: 2rem;">
+      <div class="container">
+        <div class="showcase-title-row gsap-reveal" style="max-width: 800px; margin-bottom: 3rem;">
+          <span class="showcase-tag">The Narrative</span>
+          <h1 class="hero-title" style="margin-bottom: 1.5rem;">Three University Students, One Vision</h1>
+          <p class="text-lead">
+            Veloura Scents was established to bridge the gap between astronomical luxury markups and premium olfactory craftsmanship. This is our story of rewriting the rules.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Staggered Editorial Story Grid -->
+    <section class="section-spacing" style="background-color: var(--bg-tertiary);">
+      <div class="container">
+        <div style="display: flex; flex-direction: column; gap: 6rem;">
+          <!-- Paragraph block 1 with image -->
+          <div class="showcase-row">
+            <div class="showcase-visuals gsap-image-reveal">
+              <div style="position: relative; width: 100%; aspect-ratio: 4/5; border-radius: 4px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.03);">
+                <!-- Premium Formulation lab image -->
+                <img 
+                  src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800" 
+                  alt="Raw fragrance oils, wood shards, and laboratory test tubes" 
+                  style="width: 100%; height: 100%; object-fit: cover;"
+                  width="500"
+                  height="625"
+                />
+              </div>
+            </div>
+            
+            <div class="showcase-details gsap-reveal">
+              <span class="scent-badge">The Origin</span>
+              <h2 style="font-family: var(--font-serif); font-size: 2.25rem; margin-bottom: 1.5rem;">Democratizing Luxury</h2>
+              <p style="margin-bottom: 1rem;">
+                Frustrated by how luxury perfume houses priced fragrances far beyond the reach of everyday consumers, three university students—Sarah, Neeha, and Shaheer—set out to ask a simple question: *Why does luxury have to be expensive?*
+              </p>
+              <p>
+                By studying the chemistry of raw ingredients and working directly with fragrance oil extractors, they bypassed corporate marketing budgets and luxury retail markups, packing high-end concentration directly into minimal, beautiful bottles.
+              </p>
+            </div>
+          </div>
+
+          <!-- Paragraph block 2 -->
+          <div class="showcase-row reversed">
+            <div class="showcase-visuals gsap-image-reveal">
+              <div style="position: relative; width: 100%; aspect-ratio: 4/5; border-radius: 4px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.03);">
+                <!-- Premium wood & essential oils concept -->
+                <img 
+                  src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&q=80&w=800" 
+                  alt="Organic cedar wood shards and amber oils representing craft sourcing" 
+                  style="width: 100%; height: 100%; object-fit: cover;"
+                  width="500"
+                  height="625"
+                />
+              </div>
+            </div>
+
+            <div class="showcase-details gsap-reveal">
+              <span class="scent-badge">Our Sourcing</span>
+              <h2 style="font-family: var(--font-serif); font-size: 2.25rem; margin-bottom: 1.5rem;">Premium Scent Craft</h2>
+              <p style="margin-bottom: 1rem;">
+                We extract notes from premium botanical gardens. Our cedarwood is carefully selected for deep, long-lasting dry downs, while our soft musk and rose absolute provide rich, lingering top profiles.
+              </p>
+              <p>
+                Each scent contains a high concentration of fragrance oils (Eau de Parfum grade), ensuring a longevity of over 8 hours in warm climates like Karachi and the dry air of Saudi Arabia.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Founders Board -->
+    <section class="section-spacing" style="background-color: var(--bg-primary);">
+      <div class="container">
+        <div class="showcase-title-row gsap-reveal" style="text-align: center; margin-bottom: 4rem;">
+          <span class="showcase-tag">The Team</span>
+          <h2>The Founders</h2>
+          <p class="text-lead" style="max-width: 600px; margin: 0 auto;">
+            Sarah, Neeha, and Shaheer continue to drive the product development, packaging aesthetics, and logistics operations.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+          <!-- Sarah -->
+          <div class="pillar-card gsap-reveal" style="text-align: center; padding: 3rem 2rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Sarah</h3>
+            <p style="font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; color: var(--accent-gold); letter-spacing: 0.1em; margin-bottom: 1rem;">Olfactory Curator & Formulation</p>
+            <p style="font-size: 0.875rem;">
+              Sarah manages the scent formulation process, working directly with organic oils to ensure longevity and quality dry-down characteristics.
+            </p>
+          </div>
+
+          <!-- Neeha -->
+          <div class="pillar-card gsap-reveal" style="text-align: center; padding: 3rem 2rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Neeha</h3>
+            <p style="font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; color: var(--accent-gold); letter-spacing: 0.1em; margin-bottom: 1rem;">Brand Curator & Design</p>
+            <p style="font-size: 0.875rem;">
+              Neeha designs our visual identities, minimalist bottle casings, and aesthetic packaging structures.
+            </p>
+          </div>
+
+          <!-- Shaheer -->
+          <div class="pillar-card gsap-reveal" style="text-align: center; padding: 3rem 2rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Shaheer</h3>
+            <p style="font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; color: var(--accent-gold); letter-spacing: 0.1em; margin-bottom: 1rem;">Operations & Logistics</p>
+            <p style="font-size: 0.875rem;">
+              Shaheer oversees our sourcing channels and regional logistics across Pakistan and GCC countries.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  // Run GSAP reveals
+  const runAboutAnimations = () => {
+    // @ts-ignore
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    
+    // @ts-ignore
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Header reveal
+    // @ts-ignore
+    gsap.from('header', { y: -50, opacity: 0, duration: 0.8, ease: 'power3.out' });
+
+    // Reveals
+    const reveals = document.querySelectorAll('.gsap-reveal');
+    reveals.forEach(element => {
+      // @ts-ignore
+      gsap.from(element, {
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        y: 30,
+        duration: 1.2,
+        ease: 'power3.out'
+      });
+    });
+
+    // Image scale in
+    const imgReveals = document.querySelectorAll('.gsap-image-reveal');
+    imgReveals.forEach(element => {
+      // @ts-ignore
+      gsap.from(element, {
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        scale: 1.04,
+        duration: 1.4,
+        ease: 'power2.out'
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runAboutAnimations);
+  } else {
+    runAboutAnimations();
+  }
+</script>

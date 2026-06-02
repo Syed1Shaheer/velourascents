@@ -1,0 +1,79 @@
+---
+interface Props {
+  id: string;
+  images: string[];
+  altPrefix: string;
+}
+
+const { id, images, altPrefix } = Astro.props;
+---
+
+<div class="carousel-container" id={`carousel-${id}`}>
+  {images.map((image, index) => (
+    <div class={`carousel-slide ${index === 0 ? 'active' : ''}`} data-index={index}>
+      <img 
+        src={image} 
+        alt={`${altPrefix} Fragrance - Perspective ${index + 1}`} 
+        loading={index === 0 ? "eager" : "lazy"} 
+        width="600" 
+        height="660" 
+      />
+    </div>
+  ))}
+  <div class="carousel-nav" role="tablist" aria-label={`Images of ${altPrefix}`}>
+    {images.map((_, index) => (
+      <button 
+        class={`carousel-dot ${index === 0 ? 'active' : ''}`} 
+        data-index={index} 
+        role="tab" 
+        aria-selected={index === 0 ? "true" : "false"}
+        aria-label={`Go to slide ${index + 1}`}
+        id={`tab-${id}-${index}`}
+      />
+    ))}
+  </div>
+</div>
+
+<script define:vars={{ id }}>
+  // Ensure script executes client-side after DOM is fully loaded
+  const initCarousel = () => {
+    const container = document.getElementById(`carousel-${id}`);
+    if (!container) return;
+
+    const slides = container.querySelectorAll('.carousel-slide');
+    const dots = container.querySelectorAll('.carousel-dot');
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const targetIndex = parseInt(dot.getAttribute('data-index') || '0', 10);
+        
+        // Update active slide
+        slides.forEach(slide => {
+          if (parseInt(slide.getAttribute('data-index') || '0', 10) === targetIndex) {
+            slide.classList.add('active');
+          } else {
+            slide.classList.remove('active');
+          }
+        });
+
+        // Update active dot
+        dots.forEach(d => {
+          if (parseInt(d.getAttribute('data-index') || '0', 10) === targetIndex) {
+            d.classList.add('active');
+            d.setAttribute('aria-selected', 'true');
+          } else {
+            d.classList.remove('active');
+            d.setAttribute('aria-selected', 'false');
+          }
+        });
+      });
+    });
+  };
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousel);
+  } else {
+    initCarousel();
+  }
+</script>

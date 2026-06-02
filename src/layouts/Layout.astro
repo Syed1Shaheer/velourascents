@@ -1,0 +1,535 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO Best Practices -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+		
+		<!-- Open Graph / Social Media -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		
+		<!-- Google Fonts Preconnect and Links -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+		<!-- GSAP -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
+	</head>
+	<body>
+		<!-- Navigation Header (Shared across all pages) -->
+		<header id="site-header">
+			<div class="container nav-container">
+				<a href="/" class="logo-link" aria-label="Veloura Scents Home">
+					<!-- Custom Monogram SVG Logo -->
+					<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+						<circle cx="20" cy="20" r="18" stroke="var(--border-light)" stroke-width="1"/>
+						<path d="M12 14L20 28L28 14" stroke="var(--accent-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M15 17.5C15 15.5 17.2 13.5 20 13.5C22.8 13.5 25 15.5 25 17.5C25 20.5 15 20.5 15 23.5C15 25.5 17.2 27.5 20 27.5C22.8 27.5 25 25.5 25 23.5" stroke="var(--text-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+					<span class="logo-wordmark">Veloura Scents</span>
+				</a>
+
+				<!-- Desktop Nav Menu -->
+				<nav aria-label="Main Navigation">
+					<ul class="nav-menu">
+						<li><a href="/shop" class="nav-link">Shop Collection</a></li>
+						<li><a href="/about" class="nav-link">Our Story</a></li>
+					</ul>
+				</nav>
+
+				<!-- Desktop Actions -->
+				<div class="nav-actions">
+					<!-- Region Selector Widget -->
+					<div class="region-selector" id="region-widget">
+						<button class="region-btn" id="region-toggle-btn" aria-haspopup="true" aria-expanded="false" aria-label="Select Region">
+							<span id="active-flag">🇵🇰</span>
+							<span id="active-region-label">Karachi, PK</span>
+							<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L5 5L9 1" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</button>
+						<div class="region-dropdown" id="region-dropdown-menu" role="menu">
+							<button class="region-option selected" data-region="pk" data-flag="🇵🇰" data-name="Karachi, PK" role="menuitem">
+								<span>🇵🇰</span> Karachi, PK
+							</button>
+							<button class="region-option" data-region="sa" data-flag="🇸🇦" data-name="Saudi Arabia" role="menuitem">
+								<span>🇸🇦</span> Saudi Arabia
+							</button>
+						</div>
+					</div>
+
+					<!-- Shopping Cart Icon/Badge -->
+					<button class="cart-badge-container" id="cart-drawer-trigger" aria-label="Open Shopping Cart">
+						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+							<line x1="3" y1="6" x2="21" y2="6"></line>
+							<path d="M16 10a4 4 0 0 1-8 0"></path>
+						</svg>
+						<span class="cart-badge-count" id="cart-count">0</span>
+					</button>
+				</div>
+
+				<!-- Mobile Hamburger Toggle -->
+				<button class="mobile-toggle" id="mobile-menu-trigger" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-navigation">
+					<span></span>
+					<span style="margin: 6px 0;"></span>
+					<span></span>
+				</button>
+			</div>
+		</header>
+
+		<!-- Mobile Overlay Menu -->
+		<div class="mobile-overlay" id="mobile-navigation" aria-hidden="true">
+			<ul class="mobile-nav">
+				<li><a href="/shop" class="mobile-nav-link">Shop Collection</a></li>
+				<li><a href="/about" class="mobile-nav-link">Our Story</a></li>
+			</ul>
+			
+			<div class="mobile-actions">
+				<!-- Mobile Region Toggles -->
+				<div style="border-top: 1px solid var(--border-light); padding-top: 1.5rem; margin-bottom: 2rem;">
+					<p style="font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem;">Select Region</p>
+					<div style="display: flex; gap: 0.5rem;">
+						<button class="region-btn mobile-region-opt selected" data-region="pk" style="flex: 1; justify-content: center; font-size: 0.8125rem;">🇵🇰 Karachi</button>
+						<button class="region-btn mobile-region-opt" data-region="sa" style="flex: 1; justify-content: center; font-size: 0.8125rem;">🇸🇦 Saudi Arabia</button>
+					</div>
+				</div>
+				<a href="/shop" class="btn btn-primary" style="width: 100%;">Shop Fragrances</a>
+			</div>
+		</div>
+
+		<!-- Cart Slide-out Drawer Panel -->
+		<div class="cart-overlay" id="cart-drawer-overlay"></div>
+		<div class="cart-drawer" id="shopping-cart-drawer" aria-label="Shopping Cart">
+			<div class="cart-header">
+				<span class="cart-title">Your Cart</span>
+				<button class="cart-close-btn" id="cart-drawer-close" aria-label="Close Shopping Cart">&times;</button>
+			</div>
+			
+			<!-- Items List Container -->
+			<div class="cart-items-list" id="cart-items-container">
+				<p class="cart-empty-text">Your cart is empty.</p>
+			</div>
+
+			<!-- Checkout Form overlay inside drawer (hidden by default) -->
+			<div id="cart-checkout-form-container" style="display: none; padding: 2rem; background-color: var(--bg-tertiary); border-top: 1px solid var(--border-light);">
+				<h4 style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 1rem;">Inquiry Checkout</h4>
+				<div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem;">
+					<div>
+						<label for="checkout-name" style="font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Full Name</label>
+						<input type="text" id="checkout-name" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-medium); border-radius: 4px;" placeholder="Name" />
+					</div>
+					<div>
+						<label for="checkout-phone" style="font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Phone Number</label>
+						<input type="tel" id="checkout-phone" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-medium); border-radius: 4px;" placeholder="e.g. +92 300 1234567" />
+					</div>
+					<div>
+						<label for="checkout-address" style="font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 0.25rem;">Shipping Address</label>
+						<textarea id="checkout-address" rows="2" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-medium); border-radius: 4px; resize: none;" placeholder="Delivery Address"></textarea>
+					</div>
+				</div>
+				<div style="display: flex; gap: 0.5rem;">
+					<button class="btn btn-secondary" id="checkout-cancel-btn" style="flex: 1; padding: 0.5rem;">Back</button>
+					<button class="btn btn-primary" id="checkout-submit-btn" style="flex: 1; padding: 0.5rem;">Submit</button>
+				</div>
+			</div>
+			
+			<!-- Footer panel with subtotal -->
+			<div class="cart-footer" id="cart-footer-panel">
+				<div class="cart-total-row">
+					<span>Subtotal</span>
+					<span id="cart-subtotal-val">PKR 0</span>
+				</div>
+				<button class="btn btn-primary cart-checkout-btn" id="proceed-to-checkout-btn">Proceed to Inquiry</button>
+			</div>
+		</div>
+
+		<!-- Page Content Slot -->
+		<slot />
+
+		<!-- Shared Footer -->
+		<footer>
+			<div class="container">
+				<div class="footer-top">
+					<div class="footer-brand">
+						<span class="footer-logo-text">Veloura Scents</span>
+						<p class="footer-tagline">
+							Affordable luxury fragrances. Crafted elegantly for men and women.
+						</p>
+					</div>
+					
+					<div class="footer-links-grid">
+						<div>
+							<p class="footer-col-title">Navigation</p>
+							<ul class="footer-links">
+								<li><a href="/shop" class="footer-link">Shop Collection</a></li>
+								<li><a href="/about" class="footer-link">Our Story</a></li>
+							</ul>
+						</div>
+						<div>
+							<p class="footer-col-title">Product Details</p>
+							<ul class="footer-links">
+								<li><a href="/shop" class="footer-link">Silk Petals (Women)</a></li>
+								<li><a href="/shop" class="footer-link">Imperial (Men)</a></li>
+								<li><a href="/shop" class="footer-link">Volume: 50ML</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="footer-locations">
+						<p class="footer-col-title">Our Presence</p>
+						<div class="location-item">
+							<p class="location-city">🇵🇰 Karachi, Pakistan</p>
+							<p>Main Sourcing & Distribution Hub</p>
+							<p style="color: var(--accent-gold); margin-top: 0.25rem;">pk.support@velourascents.com</p>
+						</div>
+						<div class="location-item">
+							<p class="location-city">🇸🇦 Riyadh, Saudi Arabia</p>
+							<p>Express GCC Delivery Hub</p>
+							<p style="color: var(--accent-gold); margin-top: 0.25rem;">sa.support@velourascents.com</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="footer-bottom">
+					<p class="footer-copy">
+						&copy; 2026 Veloura Scents. All rights reserved.
+					</p>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Shared Client Scripts -->
+		<script>
+			// Global Cart State
+			interface CartItem {
+				id: string;
+				name: string;
+				price: number;
+				priceSa: number;
+				img: string;
+				qty: number;
+			}
+
+			let activeRegion: 'pk' | 'sa' = 'pk';
+
+			const getCart = (): CartItem[] => {
+				const data = localStorage.getItem('veloura_cart');
+				return data ? JSON.parse(data) : [];
+			};
+
+			const saveCart = (cart: CartItem[]) => {
+				localStorage.setItem('veloura_cart', JSON.stringify(cart));
+				updateCartBadge();
+				renderCartItems();
+			};
+
+			const updateCartBadge = () => {
+				const cart = getCart();
+				const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+				const badge = document.getElementById('cart-count');
+				if (badge) badge.textContent = String(totalQty);
+			};
+
+			const renderCartItems = () => {
+				const cart = getCart();
+				const container = document.getElementById('cart-items-container');
+				const subtotalValEl = document.getElementById('cart-subtotal-val');
+				const checkoutBtn = document.getElementById('proceed-to-checkout-btn');
+				const footerPanel = document.getElementById('cart-footer-panel');
+
+				if (!container) return;
+
+				if (cart.length === 0) {
+					container.innerHTML = '<p class="cart-empty-text">Your cart is empty.</p>';
+					if (subtotalValEl) subtotalValEl.textContent = activeRegion === 'pk' ? 'PKR 0' : 'SAR 0';
+					if (checkoutBtn) {
+						// @ts-ignore
+						checkoutBtn.disabled = true;
+						// @ts-ignore
+						checkoutBtn.style.opacity = '0.5';
+					}
+					return;
+				}
+
+				if (checkoutBtn) {
+					// @ts-ignore
+					checkoutBtn.disabled = false;
+					// @ts-ignore
+					checkoutBtn.style.opacity = '1';
+				}
+
+				let subtotal = 0;
+				container.innerHTML = '';
+
+				cart.forEach(item => {
+					const price = activeRegion === 'pk' ? item.price : item.priceSa;
+					const priceFormatted = activeRegion === 'pk' ? `PKR ${price.toLocaleString()}` : `SAR ${price}`;
+					subtotal += price * item.qty;
+
+					const itemEl = document.createElement('div');
+					itemEl.className = 'cart-item';
+					itemEl.innerHTML = `
+						<img src="${item.img}" alt="${item.name}" class="cart-item-img" width="70" height="80" />
+						<div class="cart-item-details">
+							<h5 class="cart-item-name">${item.name}</h5>
+							<p class="cart-item-price">${priceFormatted}</p>
+							<div class="cart-item-qty-control">
+								<button class="qty-btn dec-qty" data-id="${item.id}" aria-label="Decrease quantity">-</button>
+								<span class="qty-val">${item.qty}</span>
+								<button class="qty-btn inc-qty" data-id="${item.id}" aria-label="Increase quantity">+</button>
+							</div>
+						</div>
+						<button class="cart-item-remove-btn remove-item" data-id="${item.id}" aria-label="Remove item">Remove</button>
+					`;
+					container.appendChild(itemEl);
+				});
+
+				if (subtotalValEl) {
+					subtotalValEl.textContent = activeRegion === 'pk' ? `PKR ${subtotal.toLocaleString()}` : `SAR ${subtotal}`;
+				}
+
+				// Bind quantities & remove triggers
+				container.querySelectorAll('.dec-qty').forEach(btn => {
+					btn.addEventListener('click', () => {
+						const id = btn.getAttribute('data-id');
+						if (id) adjustQty(id, -1);
+					});
+				});
+
+				container.querySelectorAll('.inc-qty').forEach(btn => {
+					btn.addEventListener('click', () => {
+						const id = btn.getAttribute('data-id');
+						if (id) adjustQty(id, 1);
+					});
+				});
+
+				container.querySelectorAll('.remove-item').forEach(btn => {
+					btn.addEventListener('click', () => {
+						const id = btn.getAttribute('data-id');
+						if (id) removeItem(id);
+					});
+				});
+			};
+
+			const adjustQty = (id: string, delta: number) => {
+				let cart = getCart();
+				const idx = cart.findIndex(item => item.id === id);
+				if (idx !== -1) {
+					cart[idx].qty += delta;
+					if (cart[idx].qty <= 0) {
+						cart.splice(idx, 1);
+					}
+					saveCart(cart);
+				}
+			};
+
+			const removeItem = (id: string) => {
+				let cart = getCart();
+				cart = cart.filter(item => item.id !== id);
+				saveCart(cart);
+			};
+
+			// Add to Cart handler
+			const addToCart = (id: string, name: string, price: number, priceSa: number, img: string) => {
+				const cart = getCart();
+				const idx = cart.findIndex(item => item.id === id);
+				if (idx !== -1) {
+					cart[idx].qty += 1;
+				} else {
+					cart.push({ id, name, price, priceSa, img, qty: 1 });
+				}
+				saveCart(cart);
+				openCartDrawer();
+			};
+
+			// Cart Flyout DOM Toggles
+			const cartOverlay = document.getElementById('cart-drawer-overlay');
+			const cartDrawer = document.getElementById('shopping-cart-drawer');
+			const cartOpenBtn = document.getElementById('cart-drawer-trigger');
+			const cartCloseBtn = document.getElementById('cart-drawer-close');
+
+			const openCartDrawer = () => {
+				cartOverlay?.classList.add('active');
+				cartDrawer?.classList.add('active');
+				document.body.style.overflow = 'hidden';
+			};
+
+			const closeCartDrawer = () => {
+				cartOverlay?.classList.remove('active');
+				cartDrawer?.classList.remove('active');
+				// Hide checkout form too on close
+				const formContainer = document.getElementById('cart-checkout-form-container');
+				if (formContainer) formContainer.style.display = 'none';
+				const footerPanel = document.getElementById('cart-footer-panel');
+				if (footerPanel) footerPanel.style.display = 'block';
+
+				// Re-enable scroll only if mobile nav is also closed
+				const mobileNav = document.getElementById('mobile-navigation');
+				if (!mobileNav?.classList.contains('active')) {
+					document.body.style.overflow = '';
+				}
+			};
+
+			cartOpenBtn?.addEventListener('click', openCartDrawer);
+			cartCloseBtn?.addEventListener('click', closeCartDrawer);
+			cartOverlay?.addEventListener('click', closeCartDrawer);
+
+			// Region Selector synchronizer
+			const regionToggle = document.getElementById('region-toggle-btn');
+			const dropdownMenu = document.getElementById('region-dropdown-menu');
+			const activeFlag = document.getElementById('active-flag');
+			const activeLabel = document.getElementById('active-region-label');
+			const regionOptions = document.querySelectorAll('.region-option');
+			const mobileRegionOpts = document.querySelectorAll('.mobile-region-opt');
+
+			const updateRegionGlobal = (region: 'pk' | 'sa', flag: string, name: string) => {
+				activeRegion = region;
+				
+				// Sync Widget Label
+				if (activeFlag) activeFlag.textContent = flag;
+				if (activeLabel) activeLabel.textContent = name;
+
+				regionOptions.forEach(opt => {
+					opt.classList.toggle('selected', opt.getAttribute('data-region') === region);
+				});
+
+				mobileRegionOpts.forEach(btn => {
+					btn.classList.toggle('selected', btn.getAttribute('data-region') === region);
+				});
+
+				// Dispatch custom event for pages to update notices
+				const event = new CustomEvent('regionChanged', { detail: { region } });
+				document.dispatchEvent(event);
+
+				// Redraw cart contents with new currency
+				renderCartItems();
+			};
+
+			// Toggles dropdown
+			regionToggle?.addEventListener('click', (e) => {
+				e.stopPropagation();
+				dropdownMenu?.classList.toggle('active');
+			});
+
+			document.addEventListener('click', () => {
+				dropdownMenu?.classList.remove('active');
+			});
+
+			regionOptions.forEach(opt => {
+				opt.addEventListener('click', (e) => {
+					e.stopPropagation();
+					const region = opt.getAttribute('data-region') as 'pk' | 'sa';
+					const flag = opt.getAttribute('data-flag') || '🇵🇰';
+					const name = opt.getAttribute('data-name') || 'Karachi, PK';
+					updateRegionGlobal(region, flag, name);
+					dropdownMenu?.classList.remove('active');
+				});
+			});
+
+			mobileRegionOpts.forEach(btn => {
+				btn.addEventListener('click', () => {
+					const region = btn.getAttribute('data-region') as 'pk' | 'sa';
+					const flag = region === 'pk' ? '🇵🇰' : '🇸🇦';
+					const name = region === 'pk' ? 'Karachi, PK' : 'Saudi Arabia';
+					updateRegionGlobal(region, flag, name);
+				});
+			});
+
+			// Checkout Flow inside cart
+			const checkoutBtn = document.getElementById('proceed-to-checkout-btn');
+			const formContainer = document.getElementById('cart-checkout-form-container');
+			const footerPanel = document.getElementById('cart-footer-panel');
+			const checkoutCancel = document.getElementById('checkout-cancel-btn');
+			const checkoutSubmit = document.getElementById('checkout-submit-btn');
+
+			checkoutBtn?.addEventListener('click', () => {
+				if (formContainer && footerPanel) {
+					formContainer.style.display = 'block';
+					footerPanel.style.display = 'none';
+				}
+			});
+
+			checkoutCancel?.addEventListener('click', () => {
+				if (formContainer && footerPanel) {
+					formContainer.style.display = 'none';
+					footerPanel.style.display = 'block';
+				}
+			});
+
+			checkoutSubmit?.addEventListener('click', () => {
+				const nameInput = document.getElementById('checkout-name') as HTMLInputElement;
+				const phoneInput = document.getElementById('checkout-phone') as HTMLInputElement;
+				const addressInput = document.getElementById('checkout-address') as HTMLTextAreaElement;
+
+				if (!nameInput?.value || !phoneInput?.value || !addressInput?.value) {
+					alert('Please fill out your Name, Phone Number, and Shipping Address.');
+					return;
+				}
+
+				const cart = getCart();
+				const itemsSummary = cart.map(i => `- ${i.name} (x${i.qty})`).join('\n');
+				
+				alert(`Thank you, ${nameInput.value}! Your order request has been registered.\n\nItems:\n${itemsSummary}\n\nOur customer representative will call you at ${phoneInput.value} shortly to confirm shipping details.`);
+				
+				// Clear cart on success
+				saveCart([]);
+				nameInput.value = '';
+				phoneInput.value = '';
+				addressInput.value = '';
+				closeCartDrawer();
+			});
+
+			// Mobile Menu Hamburger Toggle
+			const mobileTrigger = document.getElementById('mobile-menu-trigger');
+			const mobileNav = document.getElementById('mobile-navigation');
+			
+			mobileTrigger?.addEventListener('click', () => {
+				const isExpanded = mobileTrigger.getAttribute('aria-expanded') === 'true';
+				mobileTrigger.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+				mobileNav?.classList.toggle('active');
+				document.body.style.overflow = !isExpanded ? 'hidden' : '';
+			});
+
+			// Expose addToCart globally for pages
+			// @ts-ignore
+			window.addToCart = addToCart;
+
+			// Init
+			updateCartBadge();
+			renderCartItems();
+
+			// Scroll Header effect
+			const header = document.getElementById('site-header');
+			window.addEventListener('scroll', () => {
+				if (window.scrollY > 40) {
+					header?.classList.add('scrolled');
+				} else {
+					header?.classList.remove('scrolled');
+				}
+			});
+		</script>
+	</body>
+</html>
