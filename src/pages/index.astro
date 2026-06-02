@@ -4,13 +4,13 @@ import ScentCarousel from '../components/ScentCarousel.astro';
 
 // Scent Carousel Images
 const womenImages = [
-  '/images/silk_petals_1.png',
-  '/images/silk_petals_2.png'
+  '/new/Gemini_Generated_Image_3p8m643p8m643p8m.png',
+  '/new/Gemini_Generated_Image_mmfie6mmfie6mmfi.png'
 ];
 
 const menImages = [
-  '/images/imperial_1.png',
-  '/images/imperial_2.png'
+  '/new/Gemini_Generated_Image_au15lbau15lbau15.png',
+  '/new/Gemini_Generated_Image_ck5xwrck5xwrck5x.png'
 ];
 ---
 
@@ -50,7 +50,7 @@ const menImages = [
         <div class="hero-gallery" style="display: flex; align-items: center; justify-content: center;">
           <div class="hero-img-container" style="position: relative; width: 100%; height: 90%; border-radius: 4px; overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);">
             <img 
-              src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&q=80&w=800" 
+              src="/new/hero.png" 
               alt="Premium abstract glass refraction on textured background representing luxury craft" 
               width="450" 
               height="550"
@@ -120,7 +120,7 @@ const menImages = [
             <div>
               <button 
                 class="btn btn-primary" 
-                onclick="window.addToCart('silk-petals', 'Silk Petals', 3500, 120, '/images/silk_petals_1.png')"
+                onclick="window.addToCart('silk-petals', 'Silk Petals', 2000, 26.97, '/new/Gemini_Generated_Image_3p8m643p8m643p8m.png')"
                 aria-label="Add Silk Petals to Cart"
               >
                 Add To Cart
@@ -177,7 +177,7 @@ const menImages = [
             <div>
               <button 
                 class="btn btn-primary" 
-                onclick="window.addToCart('imperial', 'Imperial', 3500, 120, '/images/imperial_1.png')"
+                onclick="window.addToCart('imperial', 'Imperial', 2000, 26.97, '/new/Gemini_Generated_Image_au15lbau15lbau15.png')"
                 aria-label="Add Imperial to Cart"
               >
                 Add To Cart
@@ -190,8 +190,8 @@ const menImages = [
 
     <!-- Our Story Section -->
     <section class="section-spacing story-section" id="story">
-      <div class="container story-grid">
-        <div class="story-content gsap-reveal">
+      <div class="container" style="display: flex; justify-content: center;">
+        <div class="story-content gsap-reveal" style="max-width: 800px; padding-right: 0; text-align: left;">
           <span class="story-subtitle">The Founders' Vision</span>
           <h2 class="story-title">Democratizing Premium Fragrance</h2>
           <div class="story-desc-block">
@@ -210,17 +210,6 @@ const menImages = [
             <p class="founders-label">Founders & Perfumers</p>
             <p class="founders-list">Sarah, Neeha <span>&</span> Shaheer</p>
           </div>
-        </div>
-
-        <div class="story-image-wrap gsap-reveal">
-          <!-- Fixed story image representing artisanal formulation -->
-          <img 
-            src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800" 
-            alt="Artisanal perfume formulation table with wood notes and ingredients" 
-            loading="lazy" 
-            width="600" 
-            height="750" 
-          />
         </div>
       </div>
     </section>

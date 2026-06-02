@@ -1,0 +1,400 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Checkout | Veloura Scents" 
+  description="Complete your order. Follow the checkout steps: Personal Info, Shipping Address, and Payment Method."
+>
+  <main style="padding-top: 200px; min-height: 80vh; display: flex; align-items: center;">
+    <div class="container" style="max-width: 600px; margin: 0 auto; padding: 2rem 1rem;">
+      
+      <!-- Checkout Form Wrapper -->
+      <div id="checkout-card" class="checkout-card">
+        <!-- Progress Steps indicator -->
+        <div class="steps-indicator">
+          <span class="step-dot active" data-step-indicator="1">1</span>
+          <span class="step-line"></span>
+          <span class="step-dot" data-step-indicator="2">2</span>
+          <span class="step-line"></span>
+          <span class="step-dot" data-step-indicator="3">3</span>
+        </div>
+
+        <form id="checkout-form" class="checkout-form" novalidate>
+          
+          <!-- STEP 1: Personal Info -->
+          <div class="step-pane active" data-step="1">
+            <h2 class="step-title">Personal Information</h2>
+            <p class="step-desc">Please enter your contact details to start.</p>
+            
+            <div class="input-group">
+              <label for="full-name">Full Name</label>
+              <input type="text" id="full-name" required placeholder="Sarah Khan" />
+              <span class="error-msg" id="name-error">Name is required</span>
+            </div>
+            
+            <div class="input-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" required placeholder="sarah@example.com" />
+              <span class="error-msg" id="email-error">Please enter a valid email</span>
+            </div>
+
+            <div class="input-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" required placeholder="+92 300 1234567" />
+              <span class="error-msg" id="phone-error">Phone number is required</span>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-primary" id="btn-step-1-next">Next Step</button>
+            </div>
+          </div>
+
+          <!-- STEP 2: Shipping Address -->
+          <div class="step-pane" data-step="2">
+            <h2 class="step-title">Shipping Address</h2>
+            <p class="step-desc">Provide your shipping address for courier dispatch.</p>
+            
+            <div class="input-group">
+              <label for="address">Street Address</label>
+              <input type="text" id="address" required placeholder="House 123, Street 4, DHA" />
+              <span class="error-msg" id="address-error">Address is required</span>
+            </div>
+
+            <div class="input-group">
+              <label for="city">City</label>
+              <input type="text" id="city" required placeholder="Karachi" />
+              <span class="error-msg" id="city-error">City is required</span>
+            </div>
+
+            <div class="input-group">
+              <label for="country">Country</label>
+              <input type="text" id="country" required placeholder="Pakistan" />
+              <span class="error-msg" id="country-error">Country is required</span>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" id="btn-step-2-back">Back</button>
+              <button type="button" class="btn btn-primary" id="btn-step-2-next">Next Step</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Payment Method -->
+          <div class="step-pane" data-step="3">
+            <h2 class="step-title">Payment Method</h2>
+            <p class="step-desc">Enter your static payment information.</p>
+            
+            <div class="input-group">
+              <label for="card-holder">Card Holder Name</label>
+              <input type="text" id="card-holder" required placeholder="Sarah Khan" />
+              <span class="error-msg" id="holder-error">Name on card is required</span>
+            </div>
+
+            <div class="input-group">
+              <label for="card-number">Card Number</label>
+              <input type="text" id="card-number" required placeholder="4242 •••• •••• 4242" />
+              <span class="error-msg" id="number-error">Card number is required</span>
+            </div>
+
+            <div class="input-grid">
+              <div class="input-group">
+                <label for="card-expiry">Expiry Date</label>
+                <input type="text" id="card-expiry" required placeholder="MM/YY" />
+                <span class="error-msg" id="expiry-error">Required</span>
+              </div>
+              <div class="input-group">
+                <label for="card-cvc">CVC / CVV</label>
+                <input type="text" id="card-cvc" required placeholder="123" />
+                <span class="error-msg" id="cvc-error">Required</span>
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" id="btn-step-3-back">Back</button>
+              <button type="submit" class="btn btn-primary">Submit Order</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- STEP 4: Success Message Card (Hidden initially) -->
+      <div id="success-card" class="success-card" style="display: none;">
+        <div class="success-icon-wrap">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h2 class="success-title">Order Submitted</h2>
+        <p class="success-desc">
+          Thank you for shopping with Veloura Scents. Your inquiry has been registered, and our support team will contact you shortly to confirm your dispatch.
+        </p>
+        <a href="/" class="btn btn-primary" style="margin-top: 1.5rem;">Return Home</a>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .checkout-card {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  }
+
+  .steps-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+
+  .step-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--bg-secondary);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: var(--transition-quick);
+  }
+
+  .step-dot.active {
+    background-color: var(--accent-gold);
+    color: #FFFFFF;
+  }
+
+  .step-line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-light);
+    margin: 0 1rem;
+  }
+
+  .step-pane {
+    display: none;
+  }
+
+  .step-pane.active {
+    display: block;
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-title {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+  }
+
+  .input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .input-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+  }
+
+  .input-group input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-medium);
+    border-radius: 4px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    outline: none;
+    transition: var(--transition-quick);
+  }
+
+  .input-group input:focus {
+    border-color: var(--accent-gold);
+  }
+
+  .error-msg {
+    display: none;
+    font-size: 0.75rem;
+    color: #DC2626;
+    margin-top: 0.25rem;
+  }
+
+  .input-group.invalid .error-msg {
+    display: block;
+  }
+
+  .input-group.invalid input {
+    border-color: #DC2626;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .btn-row button {
+    flex: 1;
+  }
+
+  /* Success Card Styles */
+  .success-card {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .success-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: rgba(197, 168, 128, 0.15);
+    color: var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+
+  .success-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .success-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const panes = document.querySelectorAll('.step-pane');
+    const indicatorDots = document.querySelectorAll('[data-step-indicator]');
+    
+    // Step navigation buttons
+    const btnNext1 = document.getElementById('btn-step-1-next');
+    const btnBack2 = document.getElementById('btn-step-2-back');
+    const btnNext2 = document.getElementById('btn-step-2-next');
+    const btnBack3 = document.getElementById('btn-step-3-back');
+    const form = document.getElementById('checkout-form') as HTMLFormElement;
+    
+    // Switch between panes
+    const switchStep = (toStep: number) => {
+      panes.forEach(pane => {
+        const stepNum = parseInt(pane.getAttribute('data-step') || '0', 10);
+        if (stepNum === toStep) {
+          pane.classList.add('active');
+        } else {
+          pane.classList.remove('active');
+        }
+      });
+
+      indicatorDots.forEach(dot => {
+        const indicatorNum = parseInt(dot.getAttribute('data-step-indicator') || '0', 10);
+        if (indicatorNum <= toStep) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    };
+
+    // Form inputs validation helper
+    const validateInputs = (stepNum: number) => {
+      const pane = document.querySelector(`.step-pane[data-step="${stepNum}"]`);
+      if (!pane) return true;
+      
+      const inputs = pane.querySelectorAll('input[required]');
+      let isValid = true;
+
+      inputs.forEach((input: any) => {
+        const parent = input.closest('.input-group');
+        if (!input.value.trim() || (input.type === 'email' && !input.value.includes('@'))) {
+          parent?.classList.add('invalid');
+          isValid = false;
+        } else {
+          parent?.classList.remove('invalid');
+        }
+      });
+
+      return isValid;
+    };
+
+    // Navigation logic
+    btnNext1?.addEventListener('click', () => {
+      if (validateInputs(1)) {
+        switchStep(2);
+      }
+    });
+
+    btnBack2?.addEventListener('click', () => {
+      switchStep(1);
+    });
+
+    btnNext2?.addEventListener('click', () => {
+      if (validateInputs(2)) {
+        switchStep(3);
+      }
+    });
+
+    btnBack3?.addEventListener('click', () => {
+      switchStep(2);
+    });
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (validateInputs(3)) {
+        // Clear active cart from localStorage
+        localStorage.removeItem('veloura_cart');
+        
+        // Dispatch event to sync Layout cart count
+        const event = new CustomEvent('cartUpdated');
+        document.dispatchEvent(event);
+
+        // Hide checkout card and show success card
+        const cardEl = document.getElementById('checkout-card');
+        const successEl = document.getElementById('success-card');
+        if (cardEl) cardEl.style.display = 'none';
+        if (successEl) successEl.style.display = 'block';
+      }
+    });
+  });
+</script>
