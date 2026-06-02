@@ -9,24 +9,26 @@ const { id, images, altPrefix } = Astro.props;
 ---
 
 <div class="scent-hover-display" id={`scent-display-${id}`}>
-  <img 
-    src={images[0]} 
-    alt={`${altPrefix} Fragrance - Primary View`} 
-    class="img-primary" 
+  <img
+    src={images[0]}
+    alt={`${altPrefix} Fragrance - Primary View`}
+    class="img-primary"
     loading="eager"
-    width="600" 
-    height="660" 
+    width="600"
+    height="660"
   />
-  {images[1] && (
-    <img 
-      src={images[1]} 
-      alt={`${altPrefix} Fragrance - Alternative View`} 
-      class="img-secondary" 
-      loading="lazy"
-      width="600" 
-      height="660" 
-    />
-  )}
+  {
+    images[1] && (
+      <img
+        src={images[1]}
+        alt={`${altPrefix} Fragrance - Alternative View`}
+        class="img-secondary"
+        loading="lazy"
+        width="600"
+        height="660"
+      />
+    )
+  }
 </div>
 
 <style>
@@ -36,9 +38,8 @@ const { id, images, altPrefix } = Astro.props;
     aspect-ratio: 1 / 1.1;
     overflow: hidden;
     border-radius: 4px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
     cursor: pointer;
-    background-color: var(--bg-secondary);
   }
 
   .scent-hover-display img {
@@ -48,7 +49,9 @@ const { id, images, altPrefix } = Astro.props;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .scent-hover-display .img-secondary {
@@ -60,7 +63,7 @@ const { id, images, altPrefix } = Astro.props;
       opacity: 0;
       transform: scale(1.03);
     }
-    
+
     .scent-hover-display:hover .img-secondary {
       opacity: 1;
       transform: scale(1.03);
@@ -81,9 +84,9 @@ const { id, images, altPrefix } = Astro.props;
 
 <script>
   // Add quick toggle state for touch/mobile devices on click
-  document.querySelectorAll('.scent-hover-display').forEach(el => {
-    el.addEventListener('click', () => {
-      el.classList.toggle('toggled');
+  document.querySelectorAll(".scent-hover-display").forEach((el) => {
+    el.addEventListener("click", () => {
+      el.classList.toggle("toggled");
     });
   });
 </script>
