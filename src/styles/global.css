@@ -1010,11 +1010,33 @@ header {
 
 /* Footer Styling */
 footer {
+  position: relative;
+  overflow: hidden;
   background-color: #121214;
   color: #E5E7EB;
   padding-top: 5rem;
   padding-bottom: 2.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgba(18, 18, 20, 0.88), rgba(18, 18, 20, 0.88)), url('/new/hero_wave_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+footer > .container {
+  position: relative;
+  z-index: 2;
 }
 
 .footer-top {
@@ -1384,4 +1406,27 @@ footer {
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Media query for screens below 400px to optimize mobile hero buttons and paragraph sizes */
+@media (max-width: 400px) {
+  .hero-actions {
+    flex-wrap: nowrap !important;
+    gap: 0.5rem !important;
+  }
+  
+  .hero-actions .btn {
+    flex: 1 !important;
+    min-width: 0 !important;
+    padding: 0.625rem 1rem !important;
+    font-size: 0.75rem !important;
+    min-height: 44px !important;
+  }
+
+  /* Make paragraph text slightly smaller (exactly 16px minimum) on mobile */
+  .text-lead,
+  .story-desc-lead,
+  .scent-desc {
+    font-size: 1rem !important;
+  }
 }

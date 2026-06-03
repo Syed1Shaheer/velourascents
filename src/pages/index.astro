@@ -450,10 +450,83 @@ const menImages = [
   }
 </script>
 
-<style>
+<style is:global>
   .word-reveal {
     display: inline-block;
     transform: translateY(100%);
     opacity: 0;
+  }
+
+  /* Home Page Hero Custom background image styling (Light Mode) */
+  .hero-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(rgba(244, 244, 246, 0.35), rgba(244, 244, 246, 0.35)), url('/new/hero_light_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    opacity: 0;
+    transform: scale(1.06);
+    transform-origin: center center;
+    animation: heroBgReveal 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-section > .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Enhance gold text readability on light background */
+  .hero-section .hero-title .word-reveal[style*="accent-gold"] {
+    color: #9D8056 !important;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+
+  /* Story Section Custom background image styling (Cool Grey themed) */
+  .story-section {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent !important;
+  }
+
+  .story-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(rgba(235, 235, 239, 0.45), rgba(235, 235, 239, 0.45)), url('/new/story_light_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    opacity: 0.95;
+  }
+
+  .story-section > .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  @keyframes heroBgReveal {
+    from {
+      opacity: 0;
+      transform: scale(1.06);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 </style>

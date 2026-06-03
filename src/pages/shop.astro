@@ -17,9 +17,9 @@ const menImages = [
   title="Shop Fragrances | Veloura Scents" 
   description="Explore the flagship scent collection of Veloura Scents. Purchase Silk Petals for women or Imperial for men. Long-lasting luxury scents formulated for everyday elegance."
 >
-  <main style="padding-top: 200px;">
+  <main>
     <!-- Shop Intro Section -->
-    <section class="section-spacing" style="padding-bottom: 2rem;">
+    <section class="section-spacing page-hero-section" style="padding-bottom: 2rem;">
       <div class="container">
         <div class="showcase-title-row gsap-reveal" style="margin-bottom: 2rem;">
           <span class="showcase-tag">Olfactory Store</span>
@@ -158,6 +158,48 @@ const menImages = [
       </div>
     </section>
   </main>
+
+  <style is:global>
+    .page-hero-section {
+      position: relative;
+      overflow: hidden;
+      padding-top: 200px;
+    }
+
+    .page-hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: linear-gradient(rgba(244, 244, 246, 0.35), rgba(244, 244, 246, 0.35)), url('/new/hero_light_bg.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+      opacity: 0;
+      transform: scale(1.06);
+      transform-origin: center center;
+      animation: heroBgReveal 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .page-hero-section > .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes heroBgReveal {
+      from {
+        opacity: 0;
+        transform: scale(1.06);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
 </Layout>
 
 <script>
