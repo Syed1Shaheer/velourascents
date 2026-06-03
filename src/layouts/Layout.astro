@@ -54,7 +54,7 @@ const { title, description } = Astro.props;
 						class="site-logo"
 						width="300"
 						height="300"
-						style="height: auto; max-height: 140px; width: auto; object-fit: contain;"
+						style="height: auto; width: auto; object-fit: contain;"
 						loading="lazy"
 					/>
 				</a>
@@ -303,11 +303,6 @@ const { title, description } = Astro.props;
 										>Imperial (Men)</a
 									>
 								</li>
-								<li>
-									<a href="/shop" class="footer-link"
-										>Volume: 50ML</a
-									>
-								</li>
 							</ul>
 						</div>
 					</div>
@@ -355,7 +350,8 @@ const { title, description } = Astro.props;
 				qty: number;
 			}
 
-			let activeRegion: "pk" | "sa" = (localStorage.getItem("veloura_region") as "pk" | "sa") || "pk";
+			let activeRegion: "pk" | "sa" =
+				(localStorage.getItem("veloura_region") as "pk" | "sa") || "pk";
 
 			const getCart = (): CartItem[] => {
 				const data = localStorage.getItem("veloura_cart");
@@ -620,8 +616,7 @@ const { title, description } = Astro.props;
 						| "pk"
 						| "sa";
 					const flag = region === "pk" ? "🇵🇰" : "🇸🇦";
-					const name =
-						region === "pk" ? "Pakistan" : "Saudia Arabia";
+					const name = region === "pk" ? "Pakistan" : "Saudia Arabia";
 					updateRegionGlobal(region, flag, name);
 				});
 			});
@@ -681,7 +676,8 @@ const { title, description } = Astro.props;
 			window.addToCart = addToCart;
 
 			// Init
-			const initRegion = (localStorage.getItem("veloura_region") as "pk" | "sa") || "pk";
+			const initRegion =
+				(localStorage.getItem("veloura_region") as "pk" | "sa") || "pk";
 			const initFlag = initRegion === "pk" ? "🇵🇰" : "🇸🇦";
 			const initName = initRegion === "pk" ? "Pakistan" : "Saudia Arabia";
 			updateRegionGlobal(initRegion, initFlag, initName);
