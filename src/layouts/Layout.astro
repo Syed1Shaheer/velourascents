@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
 	title: string;
@@ -17,36 +17,57 @@ const { title, description } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		
+
 		<!-- SEO Best Practices -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="robots" content="index, follow" />
-		
+
 		<!-- Open Graph / Social Media -->
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		
+
 		<!-- Google Fonts Preconnect and Links -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
 
 		<!-- GSAP -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+			is:inline></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+			is:inline></script>
 	</head>
 	<body>
 		<!-- Navigation Header (Shared across all pages) -->
 		<header id="site-header">
 			<div class="container nav-container">
 				<a href="/" class="logo-link" aria-label="Veloura Scents Home">
-					<img src="/new/Logo.png" alt="Veloura Scents logo" class="site-logo" width="300" height="300" style="height: auto; max-height: 190px; object-fit: contain; margin-left: -35px;" loading="lazy" />
+					<img
+						src="/new/Logo.png"
+						alt="Veloura Scents logo"
+						class="site-logo"
+						width="300"
+						height="300"
+						style="height: auto; max-height: 140px; width: auto; object-fit: contain;"
+						loading="lazy"
+					/>
 				</a>
 
 				<!-- Mobile Hamburger Toggle -->
-				<button class="mobile-toggle" id="mobile-menu-trigger" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-navigation">
+				<button
+					class="mobile-toggle"
+					id="mobile-menu-trigger"
+					aria-label="Toggle Menu"
+					aria-expanded="false"
+					aria-controls="mobile-navigation"
+				>
 					<span></span>
 					<span style="margin: 6px 0;"></span>
 					<span></span>
@@ -59,84 +80,183 @@ const { title, description } = Astro.props;
 			<!-- Desktop Nav Menu -->
 			<nav aria-label="Main Navigation">
 				<ul class="nav-menu">
-					<li><a href="/shop" class="nav-link">Shop Collection</a></li>
+					<li>
+						<a href="/shop" class="nav-link">Shop Collection</a>
+					</li>
 					<li><a href="/about" class="nav-link">Our Story</a></li>
 				</ul>
 			</nav>
 
 			<!-- Region Selector Widget -->
 			<div class="region-selector" id="region-widget">
-				<button class="region-btn" id="region-toggle-btn" aria-haspopup="true" aria-expanded="false" aria-label="Select Region">
+				<button
+					class="region-btn"
+					id="region-toggle-btn"
+					aria-haspopup="true"
+					aria-expanded="false"
+					aria-label="Select Region"
+				>
 					<span id="active-flag">🇵🇰</span>
-					<span id="active-region-label">Karachi, PK</span>
-					<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M1 1L5 5L9 1" stroke="var(--text-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<span id="active-region-label">Pakistan</span>
+					<svg
+						width="10"
+						height="6"
+						viewBox="0 0 10 6"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M1 1L5 5L9 1"
+							stroke="var(--text-primary)"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"></path>
 					</svg>
 				</button>
-				<div class="region-dropdown" id="region-dropdown-menu" role="menu">
-					<button class="region-option selected" data-region="pk" data-flag="🇵🇰" data-name="Karachi, PK" role="menuitem">
-						<span>🇵🇰</span> Karachi, PK
+				<div
+					class="region-dropdown"
+					id="region-dropdown-menu"
+					role="menu"
+				>
+					<button
+						class="region-option selected"
+						data-region="pk"
+						data-flag="🇵🇰"
+						data-name="Pakistan"
+						role="menuitem"
+					>
+						<span>🇵🇰</span> Pakistan
 					</button>
-					<button class="region-option" data-region="sa" data-flag="🇸🇦" data-name="Saudi Arabia" role="menuitem">
-						<span>🇸🇦</span> Saudi Arabia
+					<button
+						class="region-option"
+						data-region="sa"
+						data-flag="🇸🇦"
+						data-name="Saudia Arabia"
+						role="menuitem"
+					>
+						<span>🇸🇦</span> Saudia Arabia
 					</button>
 				</div>
 			</div>
 
 			<!-- Shopping Cart Icon/Badge styled as Pill Button -->
-			<button class="cart-capsule-btn" id="cart-drawer-trigger" aria-label="Open Shopping Cart">
-				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+			<button
+				class="cart-capsule-btn"
+				id="cart-drawer-trigger"
+				aria-label="Open Shopping Cart"
+			>
+				<svg
+					width="18"
+					height="18"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+					></path>
 					<line x1="3" y1="6" x2="21" y2="6"></line>
 					<path d="M16 10a4 4 0 0 1-8 0"></path>
 				</svg>
-				<span class="cart-btn-label" style="margin-left: 0.25rem;">Cart</span>
+				<span class="cart-btn-label" style="margin-left: 0.25rem;"
+					>Cart</span
+				>
 				<span class="cart-badge-count" id="cart-count">0</span>
 			</button>
 		</div>
 
 		<!-- Mobile Overlay Menu -->
 		<div class="mobile-overlay" id="mobile-navigation" aria-hidden="true">
+			<button
+				class="mobile-close-btn"
+				id="mobile-menu-close"
+				aria-label="Close Menu"
+			>
+				<svg
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<line x1="18" y1="6" x2="6" y2="18"></line>
+					<line x1="6" y1="6" x2="18" y2="18"></line>
+				</svg>
+			</button>
 			<ul class="mobile-nav">
-				<li><a href="/shop" class="mobile-nav-link">Shop Collection</a></li>
+				<li>
+					<a href="/shop" class="mobile-nav-link">Shop Collection</a>
+				</li>
 				<li><a href="/about" class="mobile-nav-link">Our Story</a></li>
 			</ul>
-			
+
 			<div class="mobile-actions">
 				<!-- Mobile Region Toggles -->
-				<div style="border-top: 1px solid var(--border-light); padding-top: 1.5rem; margin-bottom: 2rem;">
-					<p style="font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem;">Select Region</p>
+				<div
+					style="border-top: 1px solid var(--border-light); padding-top: 1.5rem; margin-bottom: 2rem;"
+				>
+					<p
+						style="font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem;"
+					>
+						Select Region
+					</p>
 					<div style="display: flex; gap: 0.5rem;">
-						<button class="region-btn mobile-region-opt selected" data-region="pk" style="flex: 1; justify-content: center; font-size: 0.8125rem;">🇵🇰 Karachi</button>
-						<button class="region-btn mobile-region-opt" data-region="sa" style="flex: 1; justify-content: center; font-size: 0.8125rem;">🇸🇦 Saudi Arabia</button>
+						<button
+							class="region-btn mobile-region-opt selected"
+							data-region="pk"
+							style="flex: 1; justify-content: center; font-size: 0.8125rem;"
+							>🇵🇰 Pakistan</button
+						>
+						<button
+							class="region-btn mobile-region-opt"
+							data-region="sa"
+							style="flex: 1; justify-content: center; font-size: 0.8125rem;"
+							>🇸🇦 Saudia Arabia</button
+						>
 					</div>
 				</div>
-				<a href="/shop" class="btn btn-primary" style="width: 100%;">Shop Fragrances</a>
+				<a href="/shop" class="btn btn-primary" style="width: 100%;"
+					>Shop Fragrances</a
+				>
 			</div>
 		</div>
 
 		<!-- Cart Slide-out Drawer Panel -->
 		<div class="cart-overlay" id="cart-drawer-overlay"></div>
-		<div class="cart-drawer" id="shopping-cart-drawer" aria-label="Shopping Cart">
+		<div
+			class="cart-drawer"
+			id="shopping-cart-drawer"
+			aria-label="Shopping Cart"
+		>
 			<div class="cart-header">
 				<span class="cart-title">Your Cart</span>
-				<button class="cart-close-btn" id="cart-drawer-close" aria-label="Close Shopping Cart">&times;</button>
+				<button
+					class="cart-close-btn"
+					id="cart-drawer-close"
+					aria-label="Close Shopping Cart">&times;</button
+				>
 			</div>
-			
+
 			<!-- Items List Container -->
 			<div class="cart-items-list" id="cart-items-container">
 				<p class="cart-empty-text">Your cart is empty.</p>
 			</div>
 
-
-			
 			<!-- Footer panel with subtotal -->
 			<div class="cart-footer" id="cart-footer-panel">
 				<div class="cart-total-row">
 					<span>Subtotal</span>
 					<span id="cart-subtotal-val">PKR 0</span>
 				</div>
-				<button class="btn btn-primary cart-checkout-btn" id="proceed-to-checkout-btn">Proceed to Inquiry</button>
+				<button
+					class="btn btn-primary cart-checkout-btn"
+					id="proceed-to-checkout-btn">Proceed to Inquiry</button
+				>
 			</div>
 		</div>
 
@@ -150,24 +270,45 @@ const { title, description } = Astro.props;
 					<div class="footer-brand">
 						<span class="footer-logo-text">Veloura Scents</span>
 						<p class="footer-tagline">
-							Affordable luxury fragrances. Crafted elegantly for men and women.
+							Affordable luxury fragrances. Crafted elegantly for
+							men and women.
 						</p>
 					</div>
-					
+
 					<div class="footer-links-grid">
 						<div>
 							<p class="footer-col-title">Navigation</p>
 							<ul class="footer-links">
-								<li><a href="/shop" class="footer-link">Shop Collection</a></li>
-								<li><a href="/about" class="footer-link">Our Story</a></li>
+								<li>
+									<a href="/shop" class="footer-link"
+										>Shop Collection</a
+									>
+								</li>
+								<li>
+									<a href="/about" class="footer-link"
+										>Our Story</a
+									>
+								</li>
 							</ul>
 						</div>
 						<div>
 							<p class="footer-col-title">Product Details</p>
 							<ul class="footer-links">
-								<li><a href="/shop" class="footer-link">Silk Petals (Women)</a></li>
-								<li><a href="/shop" class="footer-link">Imperial (Men)</a></li>
-								<li><a href="/shop" class="footer-link">Volume: 50ML</a></li>
+								<li>
+									<a href="/shop" class="footer-link"
+										>Silk Petals (Women)</a
+									>
+								</li>
+								<li>
+									<a href="/shop" class="footer-link"
+										>Imperial (Men)</a
+									>
+								</li>
+								<li>
+									<a href="/shop" class="footer-link"
+										>Volume: 50ML</a
+									>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -177,12 +318,20 @@ const { title, description } = Astro.props;
 						<div class="location-item">
 							<p class="location-city">🇵🇰 Karachi, Pakistan</p>
 							<p>Main Sourcing & Distribution Hub</p>
-							<p style="color: var(--accent-gold); margin-top: 0.25rem;">pk.support@velourascents.com</p>
+							<p
+								style="color: var(--accent-gold); margin-top: 0.25rem;"
+							>
+								pk.support@velourascents.com
+							</p>
 						</div>
 						<div class="location-item">
 							<p class="location-city">🇸🇦 Riyadh, Saudi Arabia</p>
 							<p>Express GCC Delivery Hub</p>
-							<p style="color: var(--accent-gold); margin-top: 0.25rem;">sa.support@velourascents.com</p>
+							<p
+								style="color: var(--accent-gold); margin-top: 0.25rem;"
+							>
+								sa.support@velourascents.com
+							</p>
 						</div>
 					</div>
 				</div>
@@ -207,15 +356,15 @@ const { title, description } = Astro.props;
 				qty: number;
 			}
 
-			let activeRegion: 'pk' | 'sa' = 'pk';
+			let activeRegion: "pk" | "sa" = (localStorage.getItem("veloura_region") as "pk" | "sa") || "pk";
 
 			const getCart = (): CartItem[] => {
-				const data = localStorage.getItem('veloura_cart');
+				const data = localStorage.getItem("veloura_cart");
 				return data ? JSON.parse(data) : [];
 			};
 
 			const saveCart = (cart: CartItem[]) => {
-				localStorage.setItem('veloura_cart', JSON.stringify(cart));
+				localStorage.setItem("veloura_cart", JSON.stringify(cart));
 				updateCartBadge();
 				renderCartItems();
 			};
@@ -223,27 +372,36 @@ const { title, description } = Astro.props;
 			const updateCartBadge = () => {
 				const cart = getCart();
 				const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-				const badge = document.getElementById('cart-count');
+				const badge = document.getElementById("cart-count");
 				if (badge) badge.textContent = String(totalQty);
 			};
 
 			const renderCartItems = () => {
 				const cart = getCart();
-				const container = document.getElementById('cart-items-container');
-				const subtotalValEl = document.getElementById('cart-subtotal-val');
-				const checkoutBtn = document.getElementById('proceed-to-checkout-btn');
-				const footerPanel = document.getElementById('cart-footer-panel');
+				const container = document.getElementById(
+					"cart-items-container",
+				);
+				const subtotalValEl =
+					document.getElementById("cart-subtotal-val");
+				const checkoutBtn = document.getElementById(
+					"proceed-to-checkout-btn",
+				);
+				const footerPanel =
+					document.getElementById("cart-footer-panel");
 
 				if (!container) return;
 
 				if (cart.length === 0) {
-					container.innerHTML = '<p class="cart-empty-text">Your cart is empty.</p>';
-					if (subtotalValEl) subtotalValEl.textContent = activeRegion === 'pk' ? 'PKR 0' : 'SAR 0';
+					container.innerHTML =
+						'<p class="cart-empty-text">Your cart is empty.</p>';
+					if (subtotalValEl)
+						subtotalValEl.textContent =
+							activeRegion === "pk" ? "PKR 0" : "SAR 0";
 					if (checkoutBtn) {
 						// @ts-ignore
 						checkoutBtn.disabled = true;
 						// @ts-ignore
-						checkoutBtn.style.opacity = '0.5';
+						checkoutBtn.style.opacity = "0.5";
 					}
 					return;
 				}
@@ -252,19 +410,23 @@ const { title, description } = Astro.props;
 					// @ts-ignore
 					checkoutBtn.disabled = false;
 					// @ts-ignore
-					checkoutBtn.style.opacity = '1';
+					checkoutBtn.style.opacity = "1";
 				}
 
 				let subtotal = 0;
-				container.innerHTML = '';
+				container.innerHTML = "";
 
-				cart.forEach(item => {
-					const price = activeRegion === 'pk' ? item.price : item.priceSa;
-					const priceFormatted = activeRegion === 'pk' ? `PKR ${price.toLocaleString()}` : `SAR ${price}`;
+				cart.forEach((item) => {
+					const price =
+						activeRegion === "pk" ? item.price : item.priceSa;
+					const priceFormatted =
+						activeRegion === "pk"
+							? `PKR ${price.toLocaleString()}`
+							: `SAR ${price}`;
 					subtotal += price * item.qty;
 
-					const itemEl = document.createElement('div');
-					itemEl.className = 'cart-item';
+					const itemEl = document.createElement("div");
+					itemEl.className = "cart-item";
 					itemEl.innerHTML = `
 						<img src="${item.img}" alt="${item.name}" class="cart-item-img" width="70" height="80" />
 						<div class="cart-item-details">
@@ -282,27 +444,30 @@ const { title, description } = Astro.props;
 				});
 
 				if (subtotalValEl) {
-					subtotalValEl.textContent = activeRegion === 'pk' ? `PKR ${subtotal.toLocaleString()}` : `SAR ${subtotal}`;
+					subtotalValEl.textContent =
+						activeRegion === "pk"
+							? `PKR ${subtotal.toLocaleString()}`
+							: `SAR ${subtotal}`;
 				}
 
 				// Bind quantities & remove triggers
-				container.querySelectorAll('.dec-qty').forEach(btn => {
-					btn.addEventListener('click', () => {
-						const id = btn.getAttribute('data-id');
+				container.querySelectorAll(".dec-qty").forEach((btn) => {
+					btn.addEventListener("click", () => {
+						const id = btn.getAttribute("data-id");
 						if (id) adjustQty(id, -1);
 					});
 				});
 
-				container.querySelectorAll('.inc-qty').forEach(btn => {
-					btn.addEventListener('click', () => {
-						const id = btn.getAttribute('data-id');
+				container.querySelectorAll(".inc-qty").forEach((btn) => {
+					btn.addEventListener("click", () => {
+						const id = btn.getAttribute("data-id");
 						if (id) adjustQty(id, 1);
 					});
 				});
 
-				container.querySelectorAll('.remove-item').forEach(btn => {
-					btn.addEventListener('click', () => {
-						const id = btn.getAttribute('data-id');
+				container.querySelectorAll(".remove-item").forEach((btn) => {
+					btn.addEventListener("click", () => {
+						const id = btn.getAttribute("data-id");
 						if (id) removeItem(id);
 					});
 				});
@@ -310,7 +475,7 @@ const { title, description } = Astro.props;
 
 			const adjustQty = (id: string, delta: number) => {
 				let cart = getCart();
-				const idx = cart.findIndex(item => item.id === id);
+				const idx = cart.findIndex((item) => item.id === id);
 				if (idx !== -1) {
 					cart[idx].qty += delta;
 					if (cart[idx].qty <= 0) {
@@ -322,14 +487,20 @@ const { title, description } = Astro.props;
 
 			const removeItem = (id: string) => {
 				let cart = getCart();
-				cart = cart.filter(item => item.id !== id);
+				cart = cart.filter((item) => item.id !== id);
 				saveCart(cart);
 			};
 
 			// Add to Cart handler
-			const addToCart = (id: string, name: string, price: number, priceSa: number, img: string) => {
+			const addToCart = (
+				id: string,
+				name: string,
+				price: number,
+				priceSa: number,
+				img: string,
+			) => {
 				const cart = getCart();
-				const idx = cart.findIndex(item => item.id === id);
+				const idx = cart.findIndex((item) => item.id === id);
 				if (idx !== -1) {
 					cart[idx].qty += 1;
 				} else {
@@ -340,62 +511,81 @@ const { title, description } = Astro.props;
 			};
 
 			// Cart Flyout DOM Toggles
-			const cartOverlay = document.getElementById('cart-drawer-overlay');
-			const cartDrawer = document.getElementById('shopping-cart-drawer');
-			const cartOpenBtn = document.getElementById('cart-drawer-trigger');
-			const cartCloseBtn = document.getElementById('cart-drawer-close');
+			const cartOverlay = document.getElementById("cart-drawer-overlay");
+			const cartDrawer = document.getElementById("shopping-cart-drawer");
+			const cartOpenBtn = document.getElementById("cart-drawer-trigger");
+			const cartCloseBtn = document.getElementById("cart-drawer-close");
 
 			const openCartDrawer = () => {
-				cartOverlay?.classList.add('active');
-				cartDrawer?.classList.add('active');
-				document.body.style.overflow = 'hidden';
+				cartOverlay?.classList.add("active");
+				cartDrawer?.classList.add("active");
+				document.body.style.overflow = "hidden";
 			};
 
 			const closeCartDrawer = () => {
-				cartOverlay?.classList.remove('active');
-				cartDrawer?.classList.remove('active');
+				cartOverlay?.classList.remove("active");
+				cartDrawer?.classList.remove("active");
 				// Hide checkout form too on close
-				const formContainer = document.getElementById('cart-checkout-form-container');
-				if (formContainer) formContainer.style.display = 'none';
-				const footerPanel = document.getElementById('cart-footer-panel');
-				if (footerPanel) footerPanel.style.display = 'block';
+				const formContainer = document.getElementById(
+					"cart-checkout-form-container",
+				);
+				if (formContainer) formContainer.style.display = "none";
+				const footerPanel =
+					document.getElementById("cart-footer-panel");
+				if (footerPanel) footerPanel.style.display = "block";
 
 				// Re-enable scroll only if mobile nav is also closed
-				const mobileNav = document.getElementById('mobile-navigation');
-				if (!mobileNav?.classList.contains('active')) {
-					document.body.style.overflow = '';
+				const mobileNav = document.getElementById("mobile-navigation");
+				if (!mobileNav?.classList.contains("active")) {
+					document.body.style.overflow = "";
 				}
 			};
 
-			cartOpenBtn?.addEventListener('click', openCartDrawer);
-			cartCloseBtn?.addEventListener('click', closeCartDrawer);
-			cartOverlay?.addEventListener('click', closeCartDrawer);
+			cartOpenBtn?.addEventListener("click", openCartDrawer);
+			cartCloseBtn?.addEventListener("click", closeCartDrawer);
+			cartOverlay?.addEventListener("click", closeCartDrawer);
 
 			// Region Selector synchronizer
-			const regionToggle = document.getElementById('region-toggle-btn');
-			const dropdownMenu = document.getElementById('region-dropdown-menu');
-			const activeFlag = document.getElementById('active-flag');
-			const activeLabel = document.getElementById('active-region-label');
-			const regionOptions = document.querySelectorAll('.region-option');
-			const mobileRegionOpts = document.querySelectorAll('.mobile-region-opt');
+			const regionToggle = document.getElementById("region-toggle-btn");
+			const dropdownMenu = document.getElementById(
+				"region-dropdown-menu",
+			);
+			const activeFlag = document.getElementById("active-flag");
+			const activeLabel = document.getElementById("active-region-label");
+			const regionOptions = document.querySelectorAll(".region-option");
+			const mobileRegionOpts =
+				document.querySelectorAll(".mobile-region-opt");
 
-			const updateRegionGlobal = (region: 'pk' | 'sa', flag: string, name: string) => {
+			const updateRegionGlobal = (
+				region: "pk" | "sa",
+				flag: string,
+				name: string,
+			) => {
 				activeRegion = region;
-				
+				localStorage.setItem("veloura_region", region);
+
 				// Sync Widget Label
 				if (activeFlag) activeFlag.textContent = flag;
 				if (activeLabel) activeLabel.textContent = name;
 
-				regionOptions.forEach(opt => {
-					opt.classList.toggle('selected', opt.getAttribute('data-region') === region);
+				regionOptions.forEach((opt) => {
+					opt.classList.toggle(
+						"selected",
+						opt.getAttribute("data-region") === region,
+					);
 				});
 
-				mobileRegionOpts.forEach(btn => {
-					btn.classList.toggle('selected', btn.getAttribute('data-region') === region);
+				mobileRegionOpts.forEach((btn) => {
+					btn.classList.toggle(
+						"selected",
+						btn.getAttribute("data-region") === region,
+					);
 				});
 
 				// Dispatch custom event for pages to update notices
-				const event = new CustomEvent('regionChanged', { detail: { region } });
+				const event = new CustomEvent("regionChanged", {
+					detail: { region },
+				});
 				document.dispatchEvent(event);
 
 				// Redraw cart contents with new currency
@@ -403,50 +593,88 @@ const { title, description } = Astro.props;
 			};
 
 			// Toggles dropdown
-			regionToggle?.addEventListener('click', (e) => {
+			regionToggle?.addEventListener("click", (e) => {
 				e.stopPropagation();
-				dropdownMenu?.classList.toggle('active');
+				dropdownMenu?.classList.toggle("active");
 			});
 
-			document.addEventListener('click', () => {
-				dropdownMenu?.classList.remove('active');
+			document.addEventListener("click", () => {
+				dropdownMenu?.classList.remove("active");
 			});
 
-			regionOptions.forEach(opt => {
-				opt.addEventListener('click', (e) => {
+			regionOptions.forEach((opt) => {
+				opt.addEventListener("click", (e) => {
 					e.stopPropagation();
-					const region = opt.getAttribute('data-region') as 'pk' | 'sa';
-					const flag = opt.getAttribute('data-flag') || '🇵🇰';
-					const name = opt.getAttribute('data-name') || 'Karachi, PK';
+					const region = opt.getAttribute("data-region") as
+						| "pk"
+						| "sa";
+					const flag = opt.getAttribute("data-flag") || "🇵🇰";
+					const name = opt.getAttribute("data-name") || "Pakistan";
 					updateRegionGlobal(region, flag, name);
-					dropdownMenu?.classList.remove('active');
+					dropdownMenu?.classList.remove("active");
 				});
 			});
 
-			mobileRegionOpts.forEach(btn => {
-				btn.addEventListener('click', () => {
-					const region = btn.getAttribute('data-region') as 'pk' | 'sa';
-					const flag = region === 'pk' ? '🇵🇰' : '🇸🇦';
-					const name = region === 'pk' ? 'Karachi, PK' : 'Saudi Arabia';
+			mobileRegionOpts.forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const region = btn.getAttribute("data-region") as
+						| "pk"
+						| "sa";
+					const flag = region === "pk" ? "🇵🇰" : "🇸🇦";
+					const name =
+						region === "pk" ? "Pakistan" : "Saudia Arabia";
 					updateRegionGlobal(region, flag, name);
 				});
 			});
 
 			// Checkout Flow: Redirect to /checkout
-			const checkoutBtn = document.getElementById('proceed-to-checkout-btn');
-			checkoutBtn?.addEventListener('click', () => {
-				window.location.href = '/checkout';
+			const checkoutBtn = document.getElementById(
+				"proceed-to-checkout-btn",
+			);
+			checkoutBtn?.addEventListener("click", () => {
+				window.location.href = "/checkout";
 			});
 
-			// Mobile Menu Hamburger Toggle
-			const mobileTrigger = document.getElementById('mobile-menu-trigger');
-			const mobileNav = document.getElementById('mobile-navigation');
-			
-			mobileTrigger?.addEventListener('click', () => {
-				const isExpanded = mobileTrigger.getAttribute('aria-expanded') === 'true';
-				mobileTrigger.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
-				mobileNav?.classList.toggle('active');
-				document.body.style.overflow = !isExpanded ? 'hidden' : '';
+			// Mobile Menu Hamburger Toggle & Close handlers
+			const mobileTrigger = document.getElementById(
+				"mobile-menu-trigger",
+			);
+			const mobileNav = document.getElementById("mobile-navigation");
+			const mobileClose = document.getElementById("mobile-menu-close");
+
+			const closeMobileMenu = () => {
+				mobileTrigger?.setAttribute("aria-expanded", "false");
+				mobileNav?.classList.remove("active");
+				document.body.style.overflow = "";
+			};
+
+			mobileTrigger?.addEventListener("click", () => {
+				const isExpanded =
+					mobileTrigger.getAttribute("aria-expanded") === "true";
+				mobileTrigger.setAttribute(
+					"aria-expanded",
+					!isExpanded ? "true" : "false",
+				);
+				mobileNav?.classList.toggle("active");
+				document.body.style.overflow = !isExpanded ? "hidden" : "";
+			});
+
+			mobileClose?.addEventListener("click", closeMobileMenu);
+
+			// Close mobile menu when clicking any link inside it
+			const mobileLinks = mobileNav?.querySelectorAll("a");
+			mobileLinks?.forEach((link) => {
+				link.addEventListener("click", closeMobileMenu);
+			});
+
+			// Close on Escape key
+			document.addEventListener("keydown", (e) => {
+				if (
+					e.key === "Escape" &&
+					mobileNav?.classList.contains("active")
+				) {
+					closeMobileMenu();
+				}
 			});
 
 			// Expose addToCart globally for pages
@@ -454,6 +682,11 @@ const { title, description } = Astro.props;
 			window.addToCart = addToCart;
 
 			// Init
+			const initRegion = (localStorage.getItem("veloura_region") as "pk" | "sa") || "pk";
+			const initFlag = initRegion === "pk" ? "🇵🇰" : "🇸🇦";
+			const initName = initRegion === "pk" ? "Pakistan" : "Saudia Arabia";
+			updateRegionGlobal(initRegion, initFlag, initName);
+
 			updateCartBadge();
 			renderCartItems();
 		</script>

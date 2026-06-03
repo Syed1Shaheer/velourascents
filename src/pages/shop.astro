@@ -162,14 +162,21 @@ const menImages = [
 
 <script>
   // Sync page price labels with selected region
-  document.addEventListener('regionChanged', (e: any) => {
-    const region = e.detail.region as 'pk' | 'sa';
+  const syncPrices = (region: 'pk' | 'sa') => {
     const labels = document.querySelectorAll('.product-price-label');
     labels.forEach(label => {
       const val = region === 'pk' ? label.getAttribute('data-pk') : label.getAttribute('data-sa');
       if (val) label.textContent = val;
     });
+  };
+
+  document.addEventListener('regionChanged', (e: any) => {
+    syncPrices(e.detail.region);
   });
+
+  // Initial Sync on load
+  const initialRegion = (localStorage.getItem('veloura_region') || 'pk') as 'pk' | 'sa';
+  syncPrices(initialRegion);
 
   // Run animations
   const runShopAnimations = () => {

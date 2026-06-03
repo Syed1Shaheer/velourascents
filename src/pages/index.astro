@@ -267,13 +267,20 @@ const menImages = [
     sa: '🇸🇦 Express courier shipping across KSA (Riyadh, Jeddah, Dammam) in 3-5 days.'
   };
 
-  document.addEventListener('regionChanged', (e: any) => {
-    const region = e.detail.region as 'pk' | 'sa';
+  const syncShippingNotice = (region: 'pk' | 'sa') => {
     const hubNoticeText = document.getElementById('local-notice-text');
     if (hubNoticeText) {
       hubNoticeText.textContent = shippingInfo[region];
     }
+  };
+
+  document.addEventListener('regionChanged', (e: any) => {
+    syncShippingNotice(e.detail.region);
   });
+
+  // Initial Sync on load
+  const initialRegion = (localStorage.getItem('veloura_region') || 'pk') as 'pk' | 'sa';
+  syncShippingNotice(initialRegion);
 
   // GSAP Animations Execution
   const runAnimations = () => {
